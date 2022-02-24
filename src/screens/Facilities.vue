@@ -1,0 +1,179 @@
+<template>
+  <div class="uk-container">
+    <h2>Facilities</h2>
+    <div class="uk-child-width-expand@s" uk-grid>
+      <div>
+        <div class="uk-card uk-card-primary uk-card-body">
+          <div class="uk-container">
+            <input
+              type="text"
+              class="uk-input"
+              v-model="searchQuery"
+              placeholder="Search"
+            />
+          </div>
+        </div>
+        <div class="uk-card uk-card-default uk-card-body doctors-list-frame">
+          <br />
+          <div class="doctor-count-frame">
+            <div style="margin-left: 4px" uk-grid>
+              <div>
+                <h3 class="doctor-count">
+                  Associated Doctors :
+                  <b>{{ $store.state.doctors.doctors.length }}</b>
+                </h3>
+              </div>
+              <div>
+                <a
+                  href="#"
+                  uk-icon="icon: refresh"
+                  @click="makeDoctorsGetReq"
+                ></a>
+              </div>
+            </div>
+          </div>
+          <DoctorChip
+            v-for="doctor in resultQuery"
+            :key="doctor"
+            :id="doctor.id"
+            :doctor_name="doctor.name"
+            :phone="doctor.phone"
+            :address="doctor.address"
+            :isCutNotApplicable="doctor.isCutNotApplicable"
+          ></DoctorChip>
+        </div>
+      </div>
+      <div>
+        <div class="uk-card uk-card-default uk-card-body">
+          <form class="uk-grid-small" uk-grid @submit.prevent="submitForm">
+            <div class="uk-width-1-1">
+              <h4>Add New Facility</h4>
+            </div>
+            <div class="uk-width-1-1">
+              <input
+                class="uk-input"
+                type="text"
+                v-model="name"
+                placeholder="Enter Facility Name"
+                required
+              />
+            </div>
+            <div class="uk-width-1-2@s">
+              <input
+                class="uk-input"
+                type="number"
+                v-model="total"
+                placeholder="Enter Total Price"
+                required
+              />
+            </div>
+            <div class="uk-width-1-2@s">
+              <input
+                class="uk-input"
+                type="number"
+                v-model="cut"
+                placeholder="Enter Cut Price"
+                required
+              />
+            </div>
+            <div class="uk-width-1-2@s">
+              <div uk-form-custom="target: true">
+                <input type="file" @change="previewFile" accept=".docx,.doc,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+                <input
+                  class="uk-input uk-form-width-medium"
+                  type="text"
+                  placeholder="Select file"
+                  disabled
+                />
+              </div>
+            </div>
+            <div class="uk-width-1-1">
+              <button
+                class="uk-button uk-button-primary uk-width-1-1"
+                :disabled="$store.state.doctors.isSaving"
+              >
+                <div
+                  v-if="$store.state.doctors.isSaving"
+                  uk-spinner="ratio :0.8"
+                ></div>
+                <div v-else>Save</div>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import DoctorChip from "../components/DoctorChip.vue";
+export default {
+  data() {
+    return {
+      isDisabled: false,
+      searchQuery: null,
+      file_path:null,
+      file_name:null,
+    };
+  },
+  components: {
+    DoctorChip,
+  },
+
+  computed: {
+    resultQuery() {
+      console.log("Triggered");
+      if (this.searchQuery) {
+        return this.$store.state.doctors.doctors.filter((item) => {
+          return this.searchQuery
+            .toLowerCase()
+            .split(" ")
+            .every((v) => item.name.toLowerCase().includes(v));
+        });
+      } else {
+        return this.$store.state.doctors.doctors;
+      }
+    },
+  },
+
+  methods: {
+    previewFile(event){
+        console.log(event.target.files)
+        this.file_name = event.target.files[0].name;
+        this.file_path = event.target.files[0].path;
+    }, 
+    submitForm() {
+      let payload = {};
+      payload.name = this.name;
+      payload.cut = this.cut;
+      payload.total = this.total;
+      payload.file_name = this.file_name;
+      payload.file_path = this.file_path;
+      console.log(payload);
+      
+      this.$store.dispatch({
+        type: "facilities/add_facility",
+        payload: payload,
+      });
+    },
+    makeDoctorsGetReq() {
+      console.log(this.resultQuery);
+      //   console.log("Triggered");
+      //   this.$store.dispatch({
+      //     type: "doctors/get_doctors",
+      //   });
+    },
+  },
+};
+</script>
+
+<style scoped>
+.doctors-list-frame {
+  height: 50vh;
+  overflow-y: scroll;
+}
+.doctor-count {
+  text-algn: left;
+}
+</style>
