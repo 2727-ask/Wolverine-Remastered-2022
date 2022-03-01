@@ -35,6 +35,16 @@ const routes = [
     component: () => import('../screens/Payments.vue')
   },
   {
+    path: '/detailed_payments/',
+    name: 'Payment_Details',
+    component: () => import('../screens/PaymentDetails.vue')
+  },
+  {
+    path: '/your_profile/',
+    name: 'Your_Profile',
+    component: () => import('../screens/YourProfile.vue')
+  },
+  {
     path: '/settings',
     name: 'Settings',
     component: Settings

@@ -5,20 +5,18 @@ export default {
     add_facility(context, payload) {
         console.log(context)
         console.log(payload)
-        // context.commit({
-        //     type: "setIsSaving",
-        //     payload: {
-        //         status: true
-        //     }
-        // });
-        const facility_id = context.rootState.auth.userInfo.uid;
-        console.log(facility_id)
 
+        context.commit({
+            type: "setIsSaving",
+            payload: {
+                status: true
+            }
+        });
+        const userid = context.rootState.auth.userInfo.uid;
         let id = uuidv4();
         let name = payload.payload.name;
         let cut = payload.payload.cut;
         let total = payload.payload.total;
-        // let file_name = payload.payload.file_name;
         let file_path = payload.payload.file_path;
 
         let data = {
@@ -29,78 +27,95 @@ export default {
         }
 
         console.log(data);
-        
+
         //Logic To Copy and Paste Templates in Templates Folder
-        let source_location = file_path;
-        let template_location = localStorage.getItem("template_location")+"/"+`${id}.docx`
-        let res = copyAndPaste(source_location,template_location);
-        console.log(res);
+        if (file_path != null) {
+            let source_location = file_path;
+            let template_location = localStorage.getItem("template_location") + "/" + `${id}.docx`
+            let res = copyAndPaste(source_location, template_location);
+            console.log(res);
+        }
 
-        
 
 
-        // db.collection("centres").doc(userid).collection("doctors").doc(id).set(data).then(() => {
-        //     console.log("data saved");
-        //     context.commit({
-        //         type: "setIsSaving",
-        //         payload: {
-        //             status: false
-        //         }
-        //     });
-        //     context.dispatch({
-        //         type:"get_doctors"
-        //     }); 
-        // });
+        db.collection("centres").doc(userid).collection("facilities").doc(id).set(data).then(() => {
+            console.log("data saved");
+            context.commit({
+                type: "setIsSaving",
+                payload: {
+                    status: false
+                }
+            });
+            context.dispatch({
+                type: "get_facilities",
+            })
+        });
     },
 
-    async get_doctors(context, payload) {
+    async get_facilities(context, payload) {
+        console.log("Getting Facilities");
         console.log(context)
         console.log(payload)
-        let doctors = []
+        let facilities = []
         const userid = context.rootState.auth.userInfo.uid;
         console.log(userid)
-        let snapshot = await db.collection("centres").doc(userid).collection("doctors").orderBy('name').get();
+        let snapshot = await db.collection("centres").doc(userid).collection("facilities").orderBy('name').get();
         snapshot.forEach(doc => {
-            doctors.push(doc.data())
+            facilities.push(doc.data())
         });
         context.commit({
-            type:"setDoctors",
-            payload:doctors
-        })   
+            type: "setFacilities",
+            payload: facilities
+        })
     },
 
-    update_doctor(context,payload){
+    update_facility(context, payload) {
         console.log(context)
         console.log(payload)
         context.commit({
-            type:"setIsUpdating",
-            payload:{
-                status:true
+            type: "setIsUpdating",
+            payload: {
+                status: true
             }
-        }) 
+        })
         const userid = context.rootState.auth.userInfo.uid;
-        let doctorId = payload.payload.id; 
+        let id = payload.payload.id;
         let name = payload.payload.name;
-        let address = (payload.payload.address);
-        let phone = payload.payload.phone;
-        let isCutNotApplicable = payload.payload.isCutNotApplicable;
-        let query = db.collection("centres").doc(userid).collection("doctors").doc(doctorId).update({
+        let cut = payload.payload.cut;
+        let total = payload.payload.total;
+        let file_path = payload.payload.file_path;
+
+        console.log(userid);
+        console.log(name);
+        console.log(id);
+        console.log(cut);
+        console.log(total);
+        console.log("File Path", file_path);
+
+        if (file_path != null) {
+            let source_location = file_path;
+            let template_location = localStorage.getItem("template_location") + "/" + `${id}.docx`
+            let res = copyAndPaste(source_location, template_location);
+            console.log(res);
+        }
+
+
+        let query = db.collection("centres").doc(userid).collection("facilities").doc(id).update({
             name:name,
-            address:address,
-            phone:phone,    
-            isCutNotApplicable:isCutNotApplicable
+            cut:cut,
+            total:total,    
         });
         query.then(()=>{
             console.log("Data Updated");
-            context.commit({
-                type:"setIsUpdating",
-                payload:{
-                    status:false
-                }
-            }) 
-            context.dispatch({
-                type:"get_doctors"
-            })       
+        context.commit({
+            type: "setIsUpdating",
+            payload: {
+                status: false
+            }
+        })
+        context.dispatch({
+            type:"get_facilities"
+        })       
         }).catch((e)=>{
             console.log(e);
             context.commit({
@@ -110,42 +125,41 @@ export default {
                 }
             }) 
         })
-
     },
 
 
-    delete_doctor(context,payload){
+    delete_facility(context, payload) {
         console.log(context)
         console.log(payload)
         context.commit({
-            type:"setIsDeleting",
-            payload:{
-                status:true
+            type: "setIsDeleting",
+            payload: {
+                status: true
             }
-        }) 
+        })
         const userid = context.rootState.auth.userInfo.uid;
         console.log(userid)
-        let doctorId = payload.payload.id;
-        let query = db.collection("centres").doc(userid).collection("doctors").doc(doctorId).delete();
-        query.then(()=>{
+        let facilityId = payload.payload.id;
+        let query = db.collection("centres").doc(userid).collection("facilities").doc(facilityId).delete();
+        query.then(() => {
             console.log("Deleted");
             context.commit({
-                type:"setIsDeleting",
-                payload:{
-                    status:false
+                type: "setIsDeleting",
+                payload: {
+                    status: false
                 }
             })
             context.dispatch({
-                type:"get_doctors"
-            })   
-        }).catch((e)=>{
+                type: "get_facilities"
+            })
+        }).catch((e) => {
             console.log(e);
             context.commit({
-                type:"setIsDeleting",
-                payload:{
-                    status:false
+                type: "setIsDeleting",
+                payload: {
+                    status: false
                 }
-            }) 
+            })
         })
     }
 }

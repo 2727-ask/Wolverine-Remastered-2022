@@ -16,7 +16,7 @@
             >
           </li>
           <li class="uk-nav-divider"></li>
-          <li><router-link to="/">Your Profile</router-link></li>
+          <li><router-link to="/your_profile/">Your Profile</router-link></li>
           <li><router-link to="/">Account</router-link></li>
           <li><router-link to="/settings">Settings</router-link></li>
           <li><router-link to="/">Check For Updates</router-link></li>
@@ -38,6 +38,7 @@ export default {
   },
   created() {
     this.makeDoctorsGetReq();
+    this.makefacilitiesGetReq();
   },
   methods: {
     makeDoctorsGetReq() {
@@ -45,6 +46,13 @@ export default {
       this.$store.dispatch({
         type: "doctors/get_doctors",
       });
+    },
+    makefacilitiesGetReq() {
+      console.log(this.resultQuery);
+        console.log("Triggered");
+        this.$store.dispatch({
+          type: "facilities/get_facilities",
+        });
     },
   },
   mounted() {

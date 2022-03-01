@@ -9,10 +9,13 @@ export default{
     setIsUpdating(context,payload){
         context.isUpdating = payload.payload.status;
     },
-    setFacilities(context,payload){
-        console.log("Setting Facilities");
-        console.log(payload.payload);
-        context.facilities = payload.payload;
-        console.log(context.facilities);
+    setIsLoading(context,payload){
+        context.isLoading = payload.payload.isLoading;
+    },
+    setPaymentRecord(context,payload){
+        context.paymentRecord = payload.payload.paymentRecord;
+    },
+    setTotalSum(context,payload){
+        context.totalSum = payload.payload.totalSum;
     }
 }

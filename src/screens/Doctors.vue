@@ -102,7 +102,7 @@
   </div>
 </template>
 
-<script>
+<script type="js">
 import DoctorChip from "../components/DoctorChip.vue";
 export default {
   data() {

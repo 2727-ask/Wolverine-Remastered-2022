@@ -13,34 +13,33 @@
             />
           </div>
         </div>
-        <div class="uk-card uk-card-default uk-card-body doctors-list-frame">
+        <div class="uk-card uk-card-default uk-card-body facilities-list-frame">
           <br />
-          <div class="doctor-count-frame">
+          <div class="facilities-count-frame">
             <div style="margin-left: 4px" uk-grid>
               <div>
-                <h3 class="doctor-count">
-                  Associated Doctors :
-                  <b>{{ $store.state.doctors.doctors.length }}</b>
+                <h3 class="facilities-count">
+                  Total Facilities :
+                  <b>{{ $store.state.facilities.facilities.length }}</b>
                 </h3>
               </div>
               <div>
                 <a
                   href="#"
                   uk-icon="icon: refresh"
-                  @click="makeDoctorsGetReq"
+                  @click="makefacilitiesGetReq"
                 ></a>
               </div>
             </div>
           </div>
-          <DoctorChip
-            v-for="doctor in resultQuery"
-            :key="doctor"
-            :id="doctor.id"
-            :doctor_name="doctor.name"
-            :phone="doctor.phone"
-            :address="doctor.address"
-            :isCutNotApplicable="doctor.isCutNotApplicable"
-          ></DoctorChip>
+          <FacilityChip
+            v-for="facility in resultQuery"
+            :key="facility"
+            :id="facility.id"
+            :facility_name="facility.name"
+            :fcut="facility.cut"
+            :ftotal="facility.total"
+          ></FacilityChip>
         </div>
       </div>
       <div>
@@ -90,10 +89,10 @@
             <div class="uk-width-1-1">
               <button
                 class="uk-button uk-button-primary uk-width-1-1"
-                :disabled="$store.state.doctors.isSaving"
+                :disabled="$store.state.facilities.isSaving"
               >
                 <div
-                  v-if="$store.state.doctors.isSaving"
+                  v-if="$store.state.facilities.isSaving"
                   uk-spinner="ratio :0.8"
                 ></div>
                 <div v-else>Save</div>
@@ -107,7 +106,7 @@
 </template>
 
 <script>
-import DoctorChip from "../components/DoctorChip.vue";
+import FacilityChip from "../components/FacilityChip.vue";
 export default {
   data() {
     return {
@@ -118,21 +117,21 @@ export default {
     };
   },
   components: {
-    DoctorChip,
+    FacilityChip,
   },
 
   computed: {
     resultQuery() {
       console.log("Triggered");
       if (this.searchQuery) {
-        return this.$store.state.doctors.doctors.filter((item) => {
+        return this.$store.state.facilities.facilities.filter((item) => {
           return this.searchQuery
             .toLowerCase()
             .split(" ")
             .every((v) => item.name.toLowerCase().includes(v));
         });
       } else {
-        return this.$store.state.doctors.doctors;
+        return this.$store.state.facilities.facilities;
       }
     },
   },
@@ -157,23 +156,17 @@ export default {
         payload: payload,
       });
     },
-    makeDoctorsGetReq() {
-      console.log(this.resultQuery);
-      //   console.log("Triggered");
-      //   this.$store.dispatch({
-      //     type: "doctors/get_doctors",
-      //   });
-    },
+    
   },
 };
 </script>
 
 <style scoped>
-.doctors-list-frame {
+.facilities-list-frame {
   height: 50vh;
   overflow-y: scroll;
 }
-.doctor-count {
+.facilities-count {
   text-algn: left;
 }
 </style>
