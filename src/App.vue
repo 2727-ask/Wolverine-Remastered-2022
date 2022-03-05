@@ -1,5 +1,5 @@
 <template>
-<NavBar BrandName="Wolverine"></NavBar>
+<NavBar BrandName="Wolverine 0.2"></NavBar>
 <Login id="login-page" v-if="!$store.state.auth.isAuthenticated"></Login>
 <Tabs v-if="$store.state.auth.isAuthenticated"></Tabs>
 <router-view v-if="$store.state.auth.isAuthenticated" />

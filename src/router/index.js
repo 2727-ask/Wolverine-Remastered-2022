@@ -5,7 +5,7 @@ import Settings from '../screens/Settings.vue';
 const routes = [
   {
     path: '/',
-    name: 'NewRecord',
+    name: 'NewRecordMain',
     component: () => import('../screens/NewRecord.vue')
   },
   {
