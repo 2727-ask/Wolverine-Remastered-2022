@@ -26,6 +26,11 @@
         </div>
       </div>
     </div>
+    <div>
+      <router-link type="button" class="uk-button uk-button-primary uk-align-center">
+        Print
+      </router-link>
+    </div>
 
     <div class="uk-overflow-auto uk-height-large" style="margin-top: 20px">
       <table class="uk-table uk-table-striped uk-table uk-text-nowrap">
@@ -109,7 +114,7 @@
         Delete Payment Record For
         <b style="color: red">{{ this.patient_name }}</b>
         <slide-unlock
-          style="margin-top:5vh"
+          style="margin-top: 5vh"
           ref="vueslideunlock"
           :auto-width="true"
           :circle="true"
@@ -138,7 +143,7 @@ export default {
       modal_payment_id: null,
       patient_name: null,
       uyear: null,
-      success_text:"Deleted",
+      success_text: "Deleted",
     };
   },
   components: {
@@ -158,7 +163,7 @@ export default {
       this.year = date.getFullYear();
       this.month = date.getMonth() + 1;
       console.log(this.year, this.month);
-      this.makeGetPaymentRequest(this.doctor_id,this.year,this.month);
+      this.makeGetPaymentRequest(this.doctor_id, this.year, this.month);
     },
     toggleModal(record) {
       console.log(record.id);
@@ -167,10 +172,10 @@ export default {
       this.patient_name = record.patient_name;
       this.uyear = record.year;
       let modal = this.$refs.modal_ref;
-      this.$refs.vueslideunlock.reset()
+      this.$refs.vueslideunlock.reset();
       UIkit.modal(modal).show();
     },
-    makeDeleteRequest(){
+    makeDeleteRequest() {
       let payload = {};
       payload.id = this.modal_payment_id;
       payload.doctor_id = this.doctor_id;

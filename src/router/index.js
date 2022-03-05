@@ -34,6 +34,11 @@ const routes = [
     component: () => import('../screens/PaymentDetails.vue')
   },
   {
+    path: '/print/:info',
+    name: 'print',
+    component: () => import('../screens/Print.vue')
+  },
+  {
     path: '/your_profile/',
     name: 'Your_Profile',
     component: () => import('../screens/YourProfile.vue')

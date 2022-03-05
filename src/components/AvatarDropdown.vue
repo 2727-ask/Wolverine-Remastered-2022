@@ -17,9 +17,7 @@
           </li>
           <li class="uk-nav-divider"></li>
           <li><router-link to="/your_profile/">Your Profile</router-link></li>
-          <li><router-link to="/">Account</router-link></li>
           <li><router-link to="/settings">Settings</router-link></li>
-          <li><router-link to="/">Check For Updates</router-link></li>
           <li class="uk-nav-divider"></li>
           <li><a href="#" @click="requestSignOut">Log Out</a></li>
         </ul>
