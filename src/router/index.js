@@ -3,11 +3,7 @@ import Settings from '../screens/Settings.vue';
 
 
 const routes = [
-  {
-    path: '/',
-    name: 'NewRecord',
-    component: () => import('../screens/NewRecord.vue')
-  },
+  { path: '/', redirect: '/newrecord' },
   {
     path: '/newrecord',
     name: 'NewRecord',
@@ -37,6 +33,11 @@ const routes = [
     path: '/your_profile/',
     name: 'Your_Profile',
     component: () => import('../screens/YourProfile.vue')
+  },
+  {
+    path: '/print/',
+    name: 'Print',
+    component: () => import('../screens/Print.vue')
   },
   {
     path: '/settings',

@@ -22,7 +22,10 @@
       </div>
       <div>
         <div class="uk-card uk-card-default uk-card-body">
-          <b>Rs {{ $store.state.newrecords.totalSum }}/-</b>
+          <div uk-grid>
+            <div><b>Rs {{ $store.state.newrecords.totalSum }}/-</b></div>
+            <div style="margin-left:3px"><router-link :to="{ name: 'Print', query: { name:`${doctor_name}`,year:`${year}`,month:`${month}`}}">Print</router-link></div>
+        </div>     
         </div>
       </div>
     </div>
@@ -146,6 +149,7 @@ export default {
   },
   mounted() {
     this.doctor_id = this.$route.query.id;
+    this.doctor_name = this.$route.query.name;
     let today = new Date();
     this.year = today.getFullYear();
     this.month = today.getMonth() + 1;

@@ -18,7 +18,7 @@
 
             <div class="uk-margin">
                 <div class="uk-inline">
-                    <button class="uk-button">Login</button>
+                    <button class="uk-button uk-button-secondary">Login</button>
                 </div>
             </div>
         </form>

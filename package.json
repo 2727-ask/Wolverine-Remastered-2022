@@ -19,6 +19,7 @@
     "firebase": "^9.6.7",
     "fs-extra": "^10.0.1",
     "pizzip": "^3.1.1",
+    "print-html-element": "^0.5.1",
     "sass-loader": "^12.6.0",
     "uikit": "^3.11.1",
     "uuid": "^8.3.2",
