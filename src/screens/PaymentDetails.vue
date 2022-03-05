@@ -27,7 +27,7 @@
       </div>
     </div>
     <div>
-      <router-link type="button" class="uk-button uk-button-primary uk-align-center">
+      <router-link type="button" to="/print/" class="uk-button uk-button-primary uk-align-center">
         Print
       </router-link>
     </div>

@@ -34,7 +34,7 @@ const routes = [
     component: () => import('../screens/PaymentDetails.vue')
   },
   {
-    path: '/print/:info',
+    path: '/print/',
     name: 'print',
     component: () => import('../screens/Print.vue')
   },
