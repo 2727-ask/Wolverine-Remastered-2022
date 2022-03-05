@@ -41,6 +41,11 @@ export default {
     this.makefacilitiesGetReq();
   },
   methods: {
+    requestSignOut(){
+      this.$store.dispatch({
+        type:"auth/signOut"
+      })
+    },
     makeDoctorsGetReq() {
       console.log("Triggered");
       this.$store.dispatch({
