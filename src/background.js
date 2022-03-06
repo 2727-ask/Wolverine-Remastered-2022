@@ -3,6 +3,7 @@
 import { app, protocol, BrowserWindow } from 'electron'
 import { createProtocol } from 'vue-cli-plugin-electron-builder/lib'
 import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer'
+import { autoUpdater } from "electron-updater"
 const isDevelopment = process.env.NODE_ENV !== 'production'
 require('@electron/remote/main').initialize()
 
@@ -33,6 +34,7 @@ async function createWindow() {
   } else {
     createProtocol('app')
     // Load the index.html when not in development
+    autoUpdater.checkForUpdatesAndNotify()
     win.loadURL('app://./index.html')
   }
 }

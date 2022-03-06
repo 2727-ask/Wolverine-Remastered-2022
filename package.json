@@ -16,6 +16,7 @@
     "@electron/remote": "^2.0.4",
     "core-js": "^3.6.5",
     "docxtemplater": "^3.29.0",
+    "electron-updater": "^4.6.5",
     "firebase": "^9.6.7",
     "fs-extra": "^10.0.1",
     "pizzip": "^3.1.1",
