@@ -8,12 +8,12 @@
         <div class="uk-child-width-1-2@s action-frame" uk-grid>
           <div>
             <h5 class="action">
-              <a href="#" uk-icon="icon: pencil" @click="openEditor"></a>
+              <a uk-icon="icon: pencil" @click="openEditor"></a>
             </h5>
           </div>
           <div>
             <h5 class="action">
-              <a href="#" uk-icon="icon: trash" @click="openDeleter"></a>
+              <a uk-icon="icon: trash" @click="openDeleter"></a>
             </h5>
           </div>
         </div>
