@@ -29,8 +29,8 @@
     export default{
         methods: {
             submitForm(){
-                // let payload = { email:this.user, password:this.password }
-                let payload = { email:"ashutoshkumbhar27@gmail.com", password:"Asdfghjkl@27" }
+                let payload = { email:this.user, password:this.password }
+                // let payload = { email:"ashutoshkumbhar27@gmail.com", password:"Asdfghjkl@27" }
                 this.$store.dispatch({
                     type:"auth/login",
                     payload:payload
