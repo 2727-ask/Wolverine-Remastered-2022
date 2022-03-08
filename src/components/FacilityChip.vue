@@ -48,7 +48,7 @@
           <div class="uk-width-1-2 name-field">
             <input
               class="uk-input"
-              type="text"
+              type="number"
               v-model="cut"
               placeholder="Cut Price"
               required
