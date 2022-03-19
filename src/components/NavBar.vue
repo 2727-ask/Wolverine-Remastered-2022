@@ -1,7 +1,7 @@
 <template>
   <nav class="uk-navbar-container" uk-navbar>
     <div class="uk-navbar-left">
-      <a class="uk-navbar-item uk-logo" href="#">{{ BrandName }}</a>
+      <a class="uk-navbar-item uk-logo">{{ BrandName }}</a>
     </div>
 
     <div class="uk-navbar-right">

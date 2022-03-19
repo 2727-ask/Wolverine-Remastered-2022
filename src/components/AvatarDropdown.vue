@@ -1,6 +1,6 @@
 <template>
   <li>
-    <a href="#">
+    <a>
       <img
         class="uk-border-circle"
         :src="avatar_url"
@@ -11,15 +11,14 @@
       <div class="uk-navbar-dropdown">
         <ul class="uk-nav uk-navbar-dropdown-nav">
           <li class="uk-active">
-            <a href="#" style="font-size: 12px; overflow: hidden"
+            <a style="font-size: 12px; overflow: hidden"
               >Signed In As <br />{{ userName }}</a
             >
           </li>
           <li class="uk-nav-divider"></li>
           <li><router-link to="/your_profile/">Your Profile</router-link></li>
-          <li><router-link to="/settings">Settings</router-link></li>
           <li class="uk-nav-divider"></li>
-          <li><a href="#" @click="requestSignOut">Log Out</a></li>
+          <li><a  @click="requestSignOut">Log Out</a></li>
         </ul>
       </div>
     </a>

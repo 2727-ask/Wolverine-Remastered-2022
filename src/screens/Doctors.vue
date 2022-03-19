@@ -25,7 +25,6 @@
               </div>
               <div>
                 <a
-                  href="#"
                   uk-icon="icon: refresh"
                   @click="makeDoctorsGetReq"
                 ></a>

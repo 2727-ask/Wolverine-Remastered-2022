@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Settings from '../screens/Settings.vue';
+
 
 
 const routes = [
@@ -35,14 +35,14 @@ const routes = [
     component: () => import('../screens/YourProfile.vue')
   },
   {
+    path: '/profit/',
+    name: 'Profit',
+    component: () => import('../screens/Profit.vue')
+  },
+  {
     path: '/print/',
     name: 'Print',
     component: () => import('../screens/Print.vue')
-  },
-  {
-    path: '/settings',
-    name: 'Settings',
-    component: Settings
   }
 ]
 

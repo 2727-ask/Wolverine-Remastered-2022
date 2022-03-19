@@ -160,7 +160,7 @@
 </template>
 <script>
 import UIkit from "uikit";
-import Generator from "../addons/generateReport.js";
+
 
 export default {
   data() {
@@ -227,10 +227,6 @@ export default {
         type: "newrecords/add_record",
         payload: this.payload,
       });
-      let gen = new Generator();
-      gen.generator(
-        this.fac, this.patient_name, this.age, this.date, this.gender, this.doc
-      )
     },
   },
 };

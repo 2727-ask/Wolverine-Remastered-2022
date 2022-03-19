@@ -1,6 +1,5 @@
 import { db } from "../../../firebaseDb";
 import { v4 as uuidv4 } from 'uuid';
-import copyAndPaste from "../../../logic/copyAndPaste";
 export default {
     add_facility(context, payload) {
         console.log(context)
@@ -17,7 +16,7 @@ export default {
         let name = payload.payload.name;
         let cut = payload.payload.cut;
         let total = payload.payload.total;
-        let file_path = payload.payload.file_path;
+
 
         let data = {
             id: id,
@@ -27,15 +26,6 @@ export default {
         }
 
         console.log(data);
-
-        //Logic To Copy and Paste Templates in Templates Folder
-        if (file_path != null) {
-            let source_location = file_path;
-            let template_location = localStorage.getItem("template_location") + "/" + `${id}.docx`
-            let res = copyAndPaste(source_location, template_location);
-            console.log(res);
-        }
-
 
 
         db.collection("centres").doc(userid).collection("facilities").doc(id).set(data).then(() => {
@@ -83,21 +73,16 @@ export default {
         let name = payload.payload.name;
         let cut = payload.payload.cut;
         let total = payload.payload.total;
-        let file_path = payload.payload.file_path;
+
 
         console.log(userid);
         console.log(name);
         console.log(id);
         console.log(cut);
         console.log(total);
-        console.log("File Path", file_path);
 
-        if (file_path != null) {
-            let source_location = file_path;
-            let template_location = localStorage.getItem("template_location") + "/" + `${id}.docx`
-            let res = copyAndPaste(source_location, template_location);
-            console.log(res);
-        }
+
+       
 
 
         let query = db.collection("centres").doc(userid).collection("facilities").doc(id).update({

@@ -25,7 +25,6 @@
               </div>
               <div>
                 <a
-                  href="#"
                   uk-icon="icon: refresh"
                   @click="makefacilitiesGetReq"
                 ></a>
@@ -75,17 +74,7 @@
                 required
               />
             </div>
-            <div class="uk-width-1-2@s">
-              <div uk-form-custom="target: true">
-                <input type="file" @change="previewFile" accept=".docx,.doc,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
-                <input
-                  class="uk-input uk-form-width-medium"
-                  type="text"
-                  placeholder="Select file"
-                  disabled
-                />
-              </div>
-            </div>
+           
             <div class="uk-width-1-1">
               <button
                 class="uk-button uk-button-primary uk-width-1-1"
@@ -112,8 +101,6 @@ export default {
     return {
       isDisabled: false,
       searchQuery: null,
-      file_path:null,
-      file_name:null,
     };
   },
   components: {
@@ -137,18 +124,12 @@ export default {
   },
 
   methods: {
-    previewFile(event){
-        console.log(event.target.files)
-        this.file_name = event.target.files[0].name;
-        this.file_path = event.target.files[0].path;
-    }, 
+    
     submitForm() {
       let payload = {};
       payload.name = this.name;
       payload.cut = this.cut;
       payload.total = this.total;
-      payload.file_name = this.file_name;
-      payload.file_path = this.file_path;
       console.log(payload);
       
       this.$store.dispatch({

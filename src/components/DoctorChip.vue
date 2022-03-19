@@ -1,5 +1,5 @@
 <template>
-  <div class="uk-card uk-card-default">
+  <div class="uk-card uk-card-default" style="width:100%">
     <div class="uk-child-width-1-2@s" uk-grid>
       <div>
         <h5 class="chip heading">Dr {{ doctor_name }}</h5>
@@ -21,7 +21,7 @@
     </div>
     <div v-if="isEditorOpen === true">
       <hr />
-      <div class="uk-container">
+      <div>
         <form
           class="uk-grid-small uk-padding"
           @submit.prevent="submitForm"
@@ -84,7 +84,6 @@
         <button
           class="uk-button uk-button-default uk-align-center"
           @click="openDeleter"
-          href="#"
         >
           Cancel
         </button>
@@ -158,12 +157,14 @@ export default {
 
 <style scoped>
 .chip {
-  padding: 7px;
+  padding:2px;
+  width:100%;
   transition: width 2s, height 4s;
 }
 
 .uk-card {
   margin: 7px;
+  width:100%;
   transition: width 2s, height 4s;
 }
 
@@ -174,7 +175,7 @@ export default {
 
 .action {
   padding: 7px;
-  margin: 1px;
+
 }
 
 .action-frame {

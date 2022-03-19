@@ -54,17 +54,6 @@
               required
             />
           </div>
-           <div class="uk-width-1-2@s">
-              <div uk-form-custom="target: true">
-                <input type="file" @change="previewFile" accept=".docx,.doc,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
-                <input
-                  class="uk-input uk-form-width-medium"
-                  type="text"
-                  placeholder="Select file"
-                  disabled
-                />
-              </div>
-            </div>
           <div class="uk-width-1-1 name-field">
             <button
               class="uk-button uk-button-primary"
@@ -93,7 +82,6 @@
         <button
           class="uk-button uk-button-default uk-align-center"
           @click="openDeleter"
-          href="#"
         >
           Cancel
         </button>
@@ -123,8 +111,6 @@ export default {
       total: this.ftotal,
       isEditorOpen: false,
       isDeleterOpen: false,
-      file_name:null,
-      file_path:null
     };
   },
   props: {
@@ -134,11 +120,7 @@ export default {
     ftotal: null,
   },
   methods: {
-    previewFile(event){
-        console.log(event.target.files)
-        this.file_name = event.target.files[0].name;
-        this.file_path = event.target.files[0].path;
-    },   
+   
     openEditor() {
       this.isEditorOpen = !this.isEditorOpen;
     },
@@ -162,7 +144,6 @@ export default {
           name: this.name,
           cut: this.cut,
           total: this.total,
-          file_path:this.file_path
         },
       });
     },

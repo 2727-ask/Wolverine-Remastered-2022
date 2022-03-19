@@ -24,7 +24,6 @@
               </div>
               <div>
                 <a
-                  href="#"
                   uk-icon="icon: refresh"
                   @click="makeDoctorsGetReq"
                 ></a>
@@ -104,7 +103,7 @@
     
     <style scoped>
     .main-frame{
-        width: 75vw;
+        width: 90vw;
     }    
     .doctors-list-frame {
       height: 50vh;

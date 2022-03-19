@@ -5,14 +5,14 @@
             <div class="uk-margin">
                 <div class="uk-inline">
                     <span class="uk-form-icon" uk-icon="icon: user"></span>
-                    <input class="uk-input" v-model="user" type="text">
+                    <input class="uk-input" v-model="user" type="text" style="width:100%" required>
                 </div>
             </div>
 
             <div class="uk-margin">
                 <div class="uk-inline">
                     <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
-                    <input class="uk-input" v-model="password" type="text">
+                    <input class="uk-input" v-model="password" type="text" style="width:100%" required>
                 </div>
             </div>
 
