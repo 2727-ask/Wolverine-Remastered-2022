@@ -2,7 +2,7 @@
     <footer class="footer">
         <!-- Footer content -->
         Contact for Support {{phone}} (Ashutosh Kumbhar)<br>
-        &copy; {{current_year}} | {{company}}. All rights reserved. <br>
+        &copy;{{year_launched}} - {{current_year}} | {{company}} | All rights reserved. <br>
 
     </footer>
 </template>
@@ -11,6 +11,7 @@
     export default {
         data() {
             return {
+                year_launched: "2022",
                 current_year: null,
                 company: null,
                 phone: "+91 8766934856"

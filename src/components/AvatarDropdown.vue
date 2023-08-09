@@ -59,7 +59,7 @@ export default {
     },
   },
   mounted() {
-    this.avatar_url = `https://avatars.dicebear.com/api/initials/:${this.$store.state.auth.email}.svg`;
+    this.avatar_url = `https://avatars.dicebear.com/api/initials/:PD.svg`;
     this.userName = this.$store.state.auth.userName;
   },
 };

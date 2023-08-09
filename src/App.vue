@@ -34,5 +34,13 @@ export default{
 <style>
 @import "./../node_modules/uikit/dist/css/uikit.min.css";
 
+:root {
+  --background-color: #ffffff; /* Light mode background color */
+  --text-color: #000000; /* Light mode text color */
+}
+
+
+
+
 
 </style>

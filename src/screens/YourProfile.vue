@@ -1,7 +1,10 @@
 <template>
     <div class="uk-container" style="margin-top:10vh">
         <img class="uk-border-circle uk-align-center" :src="avatar_url" width="120" height="120" alt="Avatar" />
-        <h1 class="heading" style="text-align:center">Ashutosh Kumbhar</h1>
+        <h1 class="heading" style="text-align:center">{{userName}}</h1>
+
+        <h4 class="" style="text-align:center">Powered By © Codeo Softwares Pvt Ltd</h4>
+        <h6 style="text-align:center">Last Updated: 9 Aug 2023 | Ashutosh Kumbhar</h6>
     </div>
 </template>
 <script>
@@ -13,8 +16,9 @@
             }
         },
         mounted() {
-            this.avatar_url = `https://avatars.dicebear.com/api/initials/:${this.$store.state.auth.email}.svg`;
-            this.userName = this.$store.state.auth.userName;
+            this.avatar_url = `https://avatars.dicebear.com/api/initials/:PD.svg`;
+            //this.userName = this.$store.state.auth.userName;
+            this.userName = "Pawanaai Diagnostic Center";
         },
     }
 </script>

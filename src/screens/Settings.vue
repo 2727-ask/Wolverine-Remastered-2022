@@ -25,9 +25,14 @@
                     </tr>
                 </tbody>
             </table>
+
+ 
         </div>
     </div>
 </template>
+
+
+
 <script>
     import { dialog } from "@electron/remote";
     export default {
