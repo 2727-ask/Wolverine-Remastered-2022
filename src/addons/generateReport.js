@@ -21,11 +21,21 @@ class GenerateReport {
         }
         throw error;
     }
+
+    addLeadingZero(value) {
+        return value < 10 ? `0${value}` : value;
+    }
+
     generator(fac, patientName, age, date, gender, doctor) {
         console.log('Generating Report');
         let d = new Date(date);
         let year = d.getFullYear();
-        let month = d.getMonth() + 1;
+        let month = this.addLeadingZero(d.getMonth() + 1);
+        let day = this.addLeadingZero(d.getDate());
+
+        let sanitized_date = `${day}/${month}/${year}`;
+
+
         const genertatedReportDir = localStorage.getItem("report_location");
         const exactGeneratedReportDir = genertatedReportDir + "/" + year + "/" + month;
         fs.mkdirSync(exactGeneratedReportDir, { recursive: true }, (err) => {
@@ -46,7 +56,7 @@ class GenerateReport {
         doc.setData({
             patientName: patientName,
             age: age,
-            date: date,
+            date: sanitized_date,
             gender: gender,
             ReferedBy: doctor_name
         });

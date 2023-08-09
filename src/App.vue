@@ -3,6 +3,8 @@
 <Login id="login-page" v-if="!$store.state.auth.isAuthenticated"></Login>
 <Tabs v-if="$store.state.auth.isAuthenticated"></Tabs>
 <router-view v-if="$store.state.auth.isAuthenticated" />
+
+<Footer></Footer>
 </template>
 <script>
 import UIkit from 'uikit';
@@ -13,6 +15,7 @@ import "./../node_modules/uikit/dist/js/uikit-icons.min.js"
 import NavBar from "./components/NavBar";
 import Tabs from "./components/Tabs";
 import Login from "./screens/Login";
+import Footer from "./components/Footer";
 export default{
   methods: {
     
@@ -20,7 +23,8 @@ export default{
   components:{
     NavBar,
     Tabs,
-    Login
+    Login,
+    Footer
   }
 }
 

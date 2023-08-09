@@ -4,6 +4,7 @@
     <router-link to="/doctors" class="uk-button uk-button-primary btn">Doctors</router-link>
     <router-link to="/facilities" class="uk-button uk-button-primary btn">Facilities</router-link>
     <router-link to="/payments" class="uk-button uk-button-primary btn">Payments</router-link>
+    <router-link to="/profit" class="uk-button uk-button-primary btn">Profit</router-link>
     <a to="#" @click="refreshRequest" class="uk-button uk-button-primary btn">Refresh</a>
   </div>
 </template>

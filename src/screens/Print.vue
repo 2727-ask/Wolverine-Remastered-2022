@@ -17,7 +17,7 @@
                 v-for="payment in $store.state.newrecords.paymentRecord"
                 :key="payment"
               >
-                <td>{{ payment.date }}</td>
+                <td>{{ makeDateReadable(payment.date) }}</td>
                 <td>{{ payment.patient_name }}</td>
                 <td>{{ payment.facility_name }}</td>
                 <td>{{ payment.cut }}</td>
@@ -41,6 +41,26 @@
         };
       },
       methods: {
+
+        addLeadingZero(value) {
+          return value < 10 ? `0${value}` : value;
+        },
+
+        makeDateReadable(inputDate) {
+        // Create a Date object from the input date
+        const dateObj = new Date(inputDate);
+
+  
+        // Get the month, day, and year components from the Date object
+        const month = this.addLeadingZero(dateObj.getMonth()+1);
+        const day = this.addLeadingZero(dateObj.getDate());
+        const year = dateObj.getFullYear();
+
+        // Format the date in "Month Day, Year" format
+        const formattedDate = `${day}/${month}/${year}`;
+        return formattedDate;
+
+      },
         printContent() {
           pre.printElement(document.getElementById('printMe'));
         },

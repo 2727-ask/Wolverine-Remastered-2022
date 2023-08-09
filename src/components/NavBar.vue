@@ -1,7 +1,7 @@
 <template>
-  <nav class="uk-navbar-container" uk-navbar>
+  <nav class="uk-navbar-container" uk-navbar style="background-color: #1e87f0;">
     <div class="uk-navbar-left">
-      <a class="uk-navbar-item uk-logo" href="#">{{ BrandName }}</a>
+      <a class="uk-navbar-item uk-logo uk-light" href="#">{{ BrandName }}</a>
     </div>
 
     <div class="uk-navbar-right">

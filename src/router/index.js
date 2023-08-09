@@ -25,6 +25,11 @@ const routes = [
     component: () => import('../screens/Payments.vue')
   },
   {
+    path: '/profit/',
+    name: 'Profit',
+    component: () => import('../screens/Profit.vue')
+  },
+  {
     path: '/detailed_payments/',
     name: 'Payment_Details',
     component: () => import('../screens/PaymentDetails.vue')

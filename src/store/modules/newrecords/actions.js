@@ -143,6 +143,8 @@ export default {
         }
     },
 
+
+
     async get_records(context, payload) {
         console.log(context);
         console.log(payload);
@@ -159,6 +161,8 @@ export default {
         console.log(year, month, doctor_id);
         let paymentRecord = [];
         let totalSum = 0;
+
+
         try {
             let query = await db.collection("centres").doc(userid).collection("payments").doc(`${year}`).collection("p").where('doctor_id', '==', doctor_id).where('month', '==', month).orderBy('date').get();
             if (query.empty) {
