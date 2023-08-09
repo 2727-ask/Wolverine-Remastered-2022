@@ -24,8 +24,9 @@ npm run lint
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
-Use Node 16.13.0
-npm install -g @vue/cli
-vue add electron-builder
-npm i
+Use Node 16.13.0</br>
+
+npm install -g @vue/cli</br>
+vue add electron-builder</br>
+npm i</br>
 
