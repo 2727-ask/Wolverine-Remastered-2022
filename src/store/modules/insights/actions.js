@@ -33,9 +33,13 @@ export default {
         console.log(`Received query snapshot of size ${querySnapshot.size}`)
         querySnapshot.forEach((doc)=>{
             data.push(doc.data());
-            totalCut = totalCut + doc.data().cut;
-            totalSum = totalSum + doc.data().profit + doc.data().cut;
-            totalProfit = totalProfit + doc.data().profit
+            totalCut = totalCut + Number(doc.data().cut);
+            totalSum = totalSum + Number(doc.data().profit) + Number(doc.data().cut);
+            totalProfit = totalProfit + Number(doc.data().profit);
+
+
+            console.log("Total Cut, profit are", totalCut, totalProfit, totalSum);
+            
         });
         context.commit({
           type: 'setPaymentRecord',

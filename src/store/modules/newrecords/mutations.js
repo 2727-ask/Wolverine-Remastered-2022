@@ -16,6 +16,6 @@ export default{
         context.paymentRecord = payload.payload.paymentRecord;
     },
     setTotalSum(context,payload){
-        context.totalSum = payload.payload.totalSum;
+        context.totalSum = Number(payload.payload.totalSum);
     }
 }

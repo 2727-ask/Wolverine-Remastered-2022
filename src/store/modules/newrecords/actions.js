@@ -181,7 +181,7 @@ export default {
                 });
             } else {
                 query.forEach(doc => {
-                    totalSum = totalSum + doc.data().cut;
+                    totalSum = totalSum + Number(doc.data().cut);
                     paymentRecord.push(doc.data())
                 });
                 context.commit({

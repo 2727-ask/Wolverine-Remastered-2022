@@ -38,6 +38,7 @@ export default {
     this.makeDoctorsGetReq();
     this.makefacilitiesGetReq();
   },
+
   methods: {
     requestSignOut(){
       this.$store.dispatch({
@@ -58,8 +59,9 @@ export default {
         });
     },
   },
+
   mounted() {
-    this.avatar_url = `https://avatars.dicebear.com/api/initials/:PD.svg`;
+    this.avatar_url = `https://api.dicebear.com/9.x/fun-emoji/svg?seed=Felix`;
     this.userName = this.$store.state.auth.userName;
   },
 };

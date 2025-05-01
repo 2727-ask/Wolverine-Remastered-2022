@@ -13,6 +13,16 @@ const firebaseConfig = {
   measurementId: "G-VW4WP3HGHS"
 };
 
+// const firebaseConfig = {
+//   apiKey: "AIzaSyDDofNI_75UUcm1IAaa1vys9uUTFI917vI",
+//   authDomain: "wolverine-test-b9216.firebaseapp.com",
+//   projectId: "wolverine-test-b9216",
+//   storageBucket: "wolverine-test-b9216.firebasestorage.app",
+//   messagingSenderId: "533215405801",
+//   appId: "1:533215405801:web:54aa2bd14ace0f799b3278",
+//   measurementId: "G-XHQ8BPS4HV"
+// };
+
 // Initialize Firebase
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);

@@ -14,7 +14,7 @@
                 year_launched: "2022",
                 current_year: null,
                 company: null,
-                phone: "+91 8766934856"
+                phone: "+91 8766834856"
             };
         },
 

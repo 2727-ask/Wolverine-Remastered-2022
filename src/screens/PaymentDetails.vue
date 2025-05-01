@@ -147,13 +147,17 @@
         return formattedDate;
 
       },
+      
       getDateYear() {
         let date = new Date(this.dateyearstamp);
+        console.log("Date is", date);
+        
         this.year = date.getFullYear();
         this.month = date.getMonth() + 1;
         console.log(this.year, this.month);
         this.makeGetPaymentRequest(this.doctor_id, this.year, this.month);
       },
+
       toggleModal(record) {
         console.log(record.id);
         this.newcut = record.cut;
@@ -164,6 +168,7 @@
         this.$refs.vueslideunlock.reset()
         UIkit.modal(modal).show();
       },
+
       makeDeleteRequest() {
         let payload = {};
         payload.id = this.modal_payment_id;
@@ -176,6 +181,7 @@
         });
         this.success_text = "Deleting";
       },
+
       makeUpdatePaymentRequest() {
         let payload = {};
         payload.id = this.modal_payment_id;
@@ -188,6 +194,7 @@
           payload: payload,
         });
       },
+
       makeGetPaymentRequest(doctor_id, year, month) {
         let payload = {};
         payload.doctor_id = doctor_id;
@@ -200,6 +207,7 @@
         });
       },
     },
+
   };
 </script>
 
