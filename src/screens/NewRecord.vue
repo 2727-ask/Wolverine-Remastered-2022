@@ -24,20 +24,18 @@
         <div class="uk-width-1-2@s">
           <label for="doctors">Reffered By</label>
           <vue3-simple-typeahead :items="$store.state.doctors.doctors" placeholder="Enter Name"
-            @selectItem="selectDoctor" minInputLength="1" :itemProjection="
-              (item) => {
+            @selectItem="selectDoctor" minInputLength="1" :itemProjection="(item) => {
                 return item.name;
               }
-            " />
+              " />
         </div>
         <div class="uk-width-1-2@s">
           <label for="facilities">Purpose</label>
           <vue3-simple-typeahead :items="$store.state.facilities.facilities" placeholder="Enter Name"
-            @selectItem="selectFacility" minInputLength="1" :itemProjection="
-              (item) => {
+            @selectItem="selectFacility" minInputLength="1" :itemProjection="(item) => {
                 return item.name;
               }
-            " />
+              " />
         </div>
         <div class="uk-width-1-2@s">
           <label><input class="uk-checkbox" v-model="isCutNA" @change="activate_donot_pay_cut" type="checkbox" /><i
@@ -102,102 +100,101 @@
   </div>
 </template>
 <script>
-  import UIkit from "uikit";
-  import Generator from "../addons/generateReport.js";
+import UIkit from "uikit";
+import Generator from "../addons/generateReport.js";
 
-  export default {
-    data() {
-      return {
-        searchQuery: null,
-        cut: null,
-        total: null,
-        is_doctor_honest: false,
-        is_price_card_visible: false,
-        patient_pays: null,
-        profit: null,
-        fac: {},
-        doc: {},
-        payload: null,
-      };
+export default {
+  data() {
+    return {
+      searchQuery: null,
+      cut: null,
+      total: null,
+      is_doctor_honest: false,
+      is_price_card_visible: false,
+      patient_pays: null,
+      profit: null,
+      fac: {},
+      doc: {},
+      payload: null,
+    };
+  },
+  components: {},
+  methods: {
+    check_doctor_is_honest_or_not() {
+      this.doc.isCutNotApplicable
+        ? (this.is_doctor_honest = true)
+        : (this.is_doctor_honest = false);
     },
-    components: {},
-    methods: {
-      check_doctor_is_honest_or_not() {
-        this.doc.isCutNotApplicable
-          ? (this.is_doctor_honest = true)
-          : (this.is_doctor_honest = false);
-      },
-      createInsights() {
-        if (this.is_doctor_honest) {
-          this.cut = 0;
-          this.profit = this.fac.total;
-        } else if (this.isCutNA && this.is_doctor_honest == false) {
-          this.cut = 0;
-          this.profit = this.fac.total - this.fac.cut;
-        } else {
-          this.cut = this.fac.cut;
-          this.profit = this.fac.total - this.fac.cut;
-        }
-      },
-      selectDoctor(doctor) {
-        console.log(doctor);
-        this.doc = doctor;
-        this.check_doctor_is_honest_or_not();
-      },
-      selectFacility(facility) {
-        console.log(facility);
-        this.fac = facility;
-      },
-      submitForm() {
-        console.log("Date is", this.date);
-        this.createInsights();
-        var data = {};
-        data.name = this.patient_name;
-        data.age = this.age;
-        data.gender = this.gender;
-        data.date = this.date;
-        data.facility = this.fac;
-        data.doctor = this.doc;
-        data.profit = this.profit;
-        data.cut = this.cut;
-
-        let modal = this.$refs.modal;
-        UIkit.modal(modal).show();
-        this.payload = data;
-        console.log(data);
-      },
-
-      makeSaveRequest() {
-        this.$store.dispatch({
-          type: "newrecords/add_record",
-          payload: this.payload,
-        });
-        let gen = new Generator();
-        gen.generator(
-          this.fac, this.patient_name, this.age, this.date, this.gender, this.doc
-        )
-
-        let modal = this.$refs.modal;
-        UIkit.modal(modal).hide();
-      },
+    createInsights() {
+      if (this.is_doctor_honest) {
+        this.cut = 0;
+        this.profit = this.fac.total;
+      } else if (this.isCutNA && this.is_doctor_honest == false) {
+        this.cut = 0;
+        this.profit = this.fac.total - this.fac.cut;
+      } else {
+        this.cut = this.fac.cut;
+        this.profit = this.fac.total - this.fac.cut;
+      }
     },
-  };
+    selectDoctor(doctor) {
+      console.log(doctor);
+      this.doc = doctor;
+      this.check_doctor_is_honest_or_not();
+    },
+    selectFacility(facility) {
+      console.log(facility);
+      this.fac = facility;
+    },
+    submitForm() {
+      console.log("Date is", this.date);
+      this.createInsights();
+      var data = {};
+      data.name = this.patient_name;
+      data.age = this.age;
+      data.gender = this.gender;
+      data.date = this.date;
+      data.facility = this.fac;
+      data.doctor = this.doc;
+      data.profit = this.profit;
+      data.cut = this.cut;
+
+      let modal = this.$refs.modal;
+      UIkit.modal(modal).show();
+      this.payload = data;
+      console.log(data);
+    },
+
+    makeSaveRequest() {
+      this.$store.dispatch({
+        type: "newrecords/add_record",
+        payload: this.payload,
+      });
+      let modal = this.$refs.modal;
+      UIkit.modal(modal).hide();
+      let gen = new Generator();
+      gen.generator(
+        this.fac, this.patient_name, this.age, this.date, this.gender, this.doc
+      )
+    },
+  },
+};
 </script>
 
 <style>
-  .simple-typeahead-input {
-    width: 100%;
-    border: 0 none;
-    padding: 0 10px;
-    background: #fff;
-    color: #666;
-    border: 1px solid #e5e5e5;
-    transition: 0.2s ease-in-out;
-    transition-property: color, background-color, border;
-    box-sizing: border-box;
-    margin: 0;
-    border-radius: 0;
-    font: inherit;
-    height: 4.8vh;
-  }
+.simple-typeahead-input {
+  width: 100%;
+  border: 0 none;
+  padding: 0 10px;
+  background: #fff;
+  color: #666;
+  border: 1px solid #e5e5e5;
+  transition: 0.2s ease-in-out;
+  transition-property: color, background-color, border;
+  box-sizing: border-box;
+  margin: 0;
+  border-radius: 0;
+  font: inherit;
+  height: 4.8vh;
+}
 </style>
